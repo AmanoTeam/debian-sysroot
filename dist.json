@@ -285,15 +285,15 @@
 		"linux_version": 5.10,
 		"glibc_version": 2.31,
 		"packages": [
-			"https://deb.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_armel.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_armel.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_armel.deb"
+			"https://archive.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_armel.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_armel.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_armel.deb"
 		],
 		"triplet": "arm-unknown-linux-gnueabi",
 		"output_format": "elf32-littlearm",
 		"loader": "ld-linux.so.3",
 		"repository": {
-			"url": "https://deb.debian.org/debian/",
+			"url": "https://archive.debian.org/debian/",
 			"release": "bullseye",
 			"resource": "main contrib",
 			"architecture": "armel"
@@ -345,15 +345,15 @@
 		"linux_version": 5.10,
 		"glibc_version": 2.31,
 		"packages": [
-			"https://deb.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_mips64el.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_mips64el.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_mips64el.deb"
+			"https://archive.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_mips64el.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_mips64el.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_mips64el.deb"
 		],
 		"triplet": "mips64el-unknown-linux-gnuabi64",
 		"output_format": "elf64-tradlittlemips",
 		"loader": "ld.so.1",
 		"repository": {
-			"url": "https://deb.debian.org/debian/",
+			"url": "https://archive.debian.org/debian/",
 			"release": "bullseye",
 			"resource": "main contrib",
 			"architecture": "mips64el"
@@ -365,15 +365,15 @@
 		"linux_version": 5.10,
 		"glibc_version": 2.31,
 		"packages": [
-			"https://deb.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_mipsel.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_mipsel.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_mipsel.deb"
+			"https://archive.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_mipsel.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_mipsel.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_mipsel.deb"
 		],
 		"triplet": "mipsel-unknown-linux-gnu",
 		"output_format": "elf32-tradlittlemips",
 		"loader": "ld.so.1",
 		"repository": {
-			"url": "https://deb.debian.org/debian/",
+			"url": "https://archive.debian.org/debian/",
 			"release": "bullseye",
 			"resource": "main contrib",
 			"architecture": "mipsel"
@@ -385,15 +385,15 @@
 		"linux_version": 5.10,
 		"glibc_version": 2.31,
 		"packages": [
-			"https://deb.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_ppc64el.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_ppc64el.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_ppc64el.deb"
+			"https://archive.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_ppc64el.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_ppc64el.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_ppc64el.deb"
 		],
 		"triplet": "powerpc64le-unknown-linux-gnu",
 		"output_format": "elf64-powerpcle",
 		"loader": "ld64.so.2",
 		"repository": {
-			"url": "https://deb.debian.org/debian/",
+			"url": "https://archive.debian.org/debian/",
 			"release": "bullseye",
 			"resource": "main contrib",
 			"architecture": "ppc64el"
@@ -405,15 +405,15 @@
 		"linux_version": 5.10,
 		"glibc_version": 2.31,
 		"packages": [
-			"https://deb.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_s390x.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_s390x.deb",
-			"https://deb.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_s390x.deb"
+			"https://archive.debian.org/debian/pool/main/l/linux/linux-libc-dev_5.10.223-1_s390x.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6-dev_2.31-13+deb11u11_s390x.deb",
+			"https://archive.debian.org/debian/pool/main/g/glibc/libc6_2.31-13+deb11u11_s390x.deb"
 		],
 		"triplet": "s390x-unknown-linux-gnu",
 		"output_format": "elf64-s390",
 		"loader": "ld64.so.1",
 		"repository": {
-			"url": "https://deb.debian.org/debian/",
+			"url": "https://archive.debian.org/debian/",
 			"release": "bullseye",
 			"resource": "main contrib",
 			"architecture": "s390x"
