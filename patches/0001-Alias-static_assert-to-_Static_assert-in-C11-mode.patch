@@ -1,0 +1,26 @@
+From b976026005f0ac00d3e5652a05efe91a99a3a16c Mon Sep 17 00:00:00 2001
+From: Your Name <you@example.com>
+Date: Tue, 12 Aug 2025 19:31:18 +0000
+Subject: [PATCH] Alias static_assert to _Static_assert in C11 mode
+
+---
+ assert.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/assert.h b/assert.h
+index ec01bf5..5121843 100644
+--- a/assert.h
++++ b/assert.h
+@@ -115,3 +115,9 @@ __END_DECLS
+ # endif
+ 
+ #endif /* NDEBUG.  */
++
++#if !defined(__cplusplus) && defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
++	#undef static_assert
++	#define static_assert _Static_assert
++#endif
++
+-- 
+2.50.1
+
