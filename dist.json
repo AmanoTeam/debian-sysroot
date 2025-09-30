@@ -6,7 +6,7 @@
 		"glibc_version": 2.39,
 		"packages": [
 			"https://archive.ubuntu.com/ubuntu/pool/main/l/linux/linux-libc-dev_6.8.0-31.31_amd64.deb",
-			"https://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dev_2.40-1ubuntu3_amd64.deb",
+			"https://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6-dev_2.39-0ubuntu8_amd64.deb",
 			"https://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.39-0ubuntu8_amd64.deb"
 		],
 		"triplet": "x86_64-unknown-linux-gnu",
