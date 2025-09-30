@@ -229,8 +229,18 @@ while read item; do
 	fi
 	
 	if (( debian && distribution_version <= 7 )) || (( ubuntu && distribution_version <= 12 )); then
-		patch --reject-file='/tmp/null' --no-backup-if-mismatch --directory="${sysroot_directory}/include" --strip='1' --input="${workdir}/patches/0001-Alias-static_assert-to-_Static_assert-in-C11-mode.patch" || true
+		patch \
+			--reject-file='/tmp/null' \
+			--no-backup-if-mismatch \
+			--directory="${sysroot_directory}/include" \
+			--strip='1' \
+			--input="${workdir}/patches/0001-Alias-static_assert-to-_Static_assert-in-C11-mode.patch" 2>/dev/null || true
 	fi
+	
+	sed \
+		--in-place \
+		's/*__block/*___block/g' \
+		"${sysroot_directory}/include/"*'.h'
 	
 	cd "${temporary_directory}"
 	
