@@ -255,6 +255,10 @@ while read item; do
 			--input="${workdir}/patches/ptrace/x86_64-unknown-linux-gnu${glibc_version}/0001-Backport-PTRACE_-definitions-from-glibc-2.27-to-older-glibc-releases.patch" 2>/dev/null || true
 	fi
 	
+	if [ "${triplet}" = 'i386-unknown-linux-gnu' ] && (( ubuntu && distribution_version == 12 )); then
+		rm "${sysroot_directory}/lib/libnss_db.so"*
+	fi
+	
 	sed \
 		--in-place \
 		's/*__block/*___block/g' \
