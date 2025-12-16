@@ -246,6 +246,15 @@ while read item; do
 			--input="${workdir}/patches/0001-Backport-AArch64-HWCAP_-definitions-to-older-glibc-versions.patch" 2>/dev/null || true
 	fi
 	
+	if [ "${triplet}" = 'x86_64-unknown-linux-gnu' ] && (( (( debian && distribution_version <= 9 )) || (( ubuntu && distribution_version <= 16 )) )); then
+		patch \
+			--reject-file='/tmp/null' \
+			--no-backup-if-mismatch \
+			--directory="${sysroot_directory}/include" \
+			--strip='1' \
+			--input="${workdir}/patches/ptrace/x86_64-unknown-linux-gnu${glibc_version}/0001-Backport-PTRACE_-definitions-from-glibc-2.27-to-older-glibc-releases.patch" 2>/dev/null || true
+	fi
+	
 	sed \
 		--in-place \
 		's/*__block/*___block/g' \
