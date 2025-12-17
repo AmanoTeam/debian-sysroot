@@ -259,6 +259,15 @@ while read item; do
 		rm "${sysroot_directory}/lib/libnss_db.so"*
 	fi
 	
+	if (( debian && distribution_version == 5 )); then
+		patch \
+			--reject-file='/tmp/null' \
+			--no-backup-if-mismatch \
+			--directory="${sysroot_directory}/include" \
+			--strip='1' \
+			--input="${workdir}/patches/0001-Fix-math.h-not-including-bits-mathcalls.h-on-glibc-2.7.patch" 2>/dev/null || true
+	fi
+	
 	sed \
 		--in-place \
 		's/*__block/*___block/g' \

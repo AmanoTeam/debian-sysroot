@@ -1,0 +1,25 @@
+From 69c2575b77880e32b8b646bdae7f414524be6a18 Mon Sep 17 00:00:00 2001
+From: Kartatz <105828205+Kartatz@users.noreply.github.com>
+Date: Wed, 17 Dec 2025 20:36:55 -0300
+Subject: [PATCH] Fix <math.h> not including <bits/mathcalls.h> on glibc 2.7
+
+---
+ math.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/math.h b/math.h
+index c50b2e7..3e6eec4 100644
+--- a/math.h
++++ b/math.h
+@@ -98,7 +98,7 @@ __BEGIN_DECLS
+ # undef	__MATH_PRECNAME
+ 
+ # if (__STDC__ - 0 || __GNUC__ - 0) \
+-     && (!defined __NO_LONG_DOUBLE_MATH || defined __LDBL_COMPAT)
++     && (!defined __NO_LONG_DOUBLE_MATH || defined __LDBL_COMPAT || !defined _LIBC)
+ #  ifdef __LDBL_COMPAT
+ 
+ #   ifdef __USE_ISOC99 
+-- 
+2.51.2
+
