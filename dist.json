@@ -2180,6 +2180,19 @@
 		}
 	},
 	{
+		"distribution": "mobilinux",
+		"distribution_version": 4.1,
+		"linux_version": 2.6,
+		"glibc_version": 2.3,
+		"packages": [
+			"https://github.com/AmanoTeam/motomagx-sysroot/releases/latest/download/arm-motomagx-linux-gnueabi2.3.tar.xz"
+		],
+		"triplet": "arm-motomagx-linux-gnueabi",
+		"output_format": "elf32-littlearm",
+		"loader": "ld-linux.so.3",
+		"repository": null
+	},
+	{
 		"distribution": "debian",
 		"distribution_version": 4.0,
 		"linux_version": 2.6,

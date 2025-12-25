@@ -28,11 +28,14 @@ while read item; do
 	declare debian='0'
 	declare ubuntu='0'
 	declare centos='0'
+	declare mobilinux='0'
 	
 	declare amd64='0'
 	declare aarch64='0'
 	
-	wget --no-verbose --spider "${repository_url}dists/${repository_release}"
+	if [ "${repository_url}" != 'null' ]; then
+		wget --no-verbose --spider "${repository_url}dists/${repository_release}"
+	fi
 	
 	if [ "${triplet}" = 'x86_64-unknown-linux-gnu' ]; then
 		amd64='1'
@@ -52,6 +55,10 @@ while read item; do
 	
 	if [ "${distribution}" = 'centos' ]; then
 		centos='1'
+	fi
+	
+	if [ "${distribution}" = 'mobilinux' ]; then
+		mobilinux='1'
 	fi
 	
 	if [ "${distribution_version}" = '2.2' ]; then
@@ -108,6 +115,10 @@ while read item; do
 			
 			unlink "${filename}"
 		done
+	elif [ "${distribution}" = 'mobilinux' ]; then
+		for file in *.tar.xz; do
+			tar --strip='1' --extract --file="${file}"
+		done
 	else
 		for file in *.rpm; do
 			rpm2cpio "${file}" | cpio \
@@ -119,10 +130,16 @@ while read item; do
 		done
 	fi
 	
-	cp --recursive './usr/include' "${sysroot_directory}"
+	if (( mobilinux )); then
+		cp --recursive './include' "${sysroot_directory}"
+	else
+		cp --recursive './usr/include' "${sysroot_directory}"
+	fi
 	
 	if (( centos || ubuntu )) && [ -d './usr/lib64' ]; then
 		mv './usr/lib64' "${sysroot_directory}/lib"
+	elif (( mobilinux )); then
+		cp --recursive './lib' "${sysroot_directory}"
 	else
 		cp --recursive './usr/lib' "${sysroot_directory}"
 	fi
@@ -193,7 +210,7 @@ while read item; do
 		echo -e "OUTPUT_FORMAT(${output_format})\nGROUP ( libc.so.6 libc_nonshared.a AS_NEEDED ( ${loader} ) )" > './libc.so'
 	fi
 	
-	if (( ( debian || centos ) && distribution_version >= 4 && distribution_version <= 9 )) || (( ubuntu && distribution_version >= 12 && distribution_version <= 18 )); then
+	if (( ( mobilinux || debian || centos ) && distribution_version >= 4 && distribution_version <= 9 )) || (( ubuntu && distribution_version >= 12 && distribution_version <= 18 )); then
 		echo -e "OUTPUT_FORMAT(${output_format})\nGROUP ( libpthread.so.0 libpthread_nonshared.a )" > './libpthread.so'
 	fi
 	
@@ -217,7 +234,7 @@ while read item; do
 		[ -f "${sysroot_directory}/include/linux/pim.h" ] && patch --directory="${sysroot_directory}" --strip='1' --input="${workdir}/patches/linux_pim.patch"
 	fi
 	
-	if (( debian && distribution_version == 4 )); then
+	if (( ( mobilinux || debian ) && distribution_version == 4 )); then
 		while read file; do
 			sed \
 				--null-data \
@@ -228,7 +245,7 @@ while read item; do
 		done <<< $(find "${sysroot_directory}/include" -type 'f')
 	fi
 	
-	if (( debian && distribution_version <= 7 )) || (( ubuntu && distribution_version <= 12 )); then
+	if (( ( mobilinux || debian ) && distribution_version <= 7 )) || (( ubuntu && distribution_version <= 12 )); then
 		patch \
 			--reject-file='/tmp/null' \
 			--no-backup-if-mismatch \
@@ -246,7 +263,7 @@ while read item; do
 			--input="${workdir}/patches/0001-Backport-AArch64-HWCAP_-definitions-to-older-glibc-versions.patch" 2>/dev/null || true
 	fi
 	
-	if [ "${triplet}" = 'x86_64-unknown-linux-gnu' ] && (( (( debian && distribution_version <= 9 )) || (( ubuntu && distribution_version <= 16 )) )); then
+	if [ "${triplet}" = 'x86_64-unknown-linux-gnu' ] && (( (( ( mobilinux || debian ) && distribution_version <= 9 )) || (( ubuntu && distribution_version <= 16 )) )); then
 		patch \
 			--reject-file='/tmp/null' \
 			--no-backup-if-mismatch \
