@@ -285,6 +285,15 @@ while read item; do
 			--input="${workdir}/patches/0001-Fix-math.h-not-including-bits-mathcalls.h-on-glibc-2.7.patch" 2>/dev/null || true
 	fi
 	
+	if [ "${glibc_version}" = '2.3' ]; then
+		patch \
+			--reject-file='/tmp/null' \
+			--no-backup-if-mismatch \
+			--directory="${sysroot_directory}/include" \
+			--strip='1' \
+			--input="${workdir}/patches/0001-Backport-O_CLOEXEC-definition-to-older-glibc-versions.patch" || true
+	fi
+	
 	sed \
 		--in-place \
 		's/*__block/*___block/g' \
@@ -295,7 +304,7 @@ while read item; do
 	rm --force --recursive ./*
 	
 	echo "- Creating tarball at ${tarball_filename}"
-	
+
 	tar --directory="$(dirname "${sysroot_directory}")" --create --file=- "$(basename "${sysroot_directory}")" | xz --compress -9 > "${tarball_filename}"
 	sha256sum "${tarball_filename}" | sed "s|$(dirname "${sysroot_directory}")/||" > "${tarball_filename}.sha256"
 	

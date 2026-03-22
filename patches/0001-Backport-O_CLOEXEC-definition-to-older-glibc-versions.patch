@@ -1,0 +1,24 @@
+From 2a7c2f92b6c2cf0a1594a5e0fd21ed8e80d79fd9 Mon Sep 17 00:00:00 2001
+From: Kartatz <105828205+Kartatz@users.noreply.github.com>
+Date: Sun, 22 Mar 2026 18:51:27 -0300
+Subject: [PATCH] Backport O_CLOEXEC definition to older glibc versions
+
+---
+ bits/fcntl.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/bits/fcntl.h b/bits/fcntl.h
+index 9198c70..ab2a13e 100644
+--- a/bits/fcntl.h
++++ b/bits/fcntl.h
+@@ -47,6 +47,7 @@
+ # define O_DIRECTORY	0200000	/* Must be a directory.	 */
+ # define O_NOFOLLOW	0400000	/* Do not follow links.	 */
+ # define O_NOATIME     01000000 /* Do not set atime.  */
++# define O_CLOEXEC     02000000 /* Set close_on_exec.  */
+ #endif
+ 
+ /* For now Linux has synchronisity options for data and read operations.
+-- 
+2.52.0
+
