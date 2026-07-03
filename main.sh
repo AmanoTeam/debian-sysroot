@@ -290,6 +290,13 @@ while read item; do
 			--input="${workdir}/patches/0001-Backport-O_CLOEXEC-definition-to-older-glibc-versions.patch" || true
 	fi
 	
+	patch \
+		--reject-file='/tmp/null' \
+		--no-backup-if-mismatch \
+		--directory="${sysroot_directory}/include" \
+		--strip='1' \
+		--input="${workdir}/patches/0001-Remove-logic-around-__STDC_FORMAT_MACROS.patch" || true
+	
 	sed \
 		--in-place \
 		's/*__block/*___block/g' \

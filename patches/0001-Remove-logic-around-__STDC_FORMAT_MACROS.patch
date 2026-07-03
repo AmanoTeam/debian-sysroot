@@ -1,0 +1,39 @@
+From 386b852dec43739309a369c9d20a8b13b20453ea Mon Sep 17 00:00:00 2001
+From: root
+ <root@runnervmkkn4f.rpzyaon4tsbuzbyx4xvysldu2h.bx.internal.cloudapp.net>
+Date: Fri, 3 Jul 2026 03:25:24 +0000
+Subject: [PATCH] Remove logic around __STDC_FORMAT_MACROS
+
+---
+ inttypes.h | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/inttypes.h b/inttypes.h
+index 0b5e594..4f0e774 100644
+--- a/inttypes.h
++++ b/inttypes.h
+@@ -41,11 +41,6 @@ typedef wchar_t __gwchar_t;
+ # define ____gwchar_t_defined	1
+ #endif
+ 
+-
+-/* The ISO C99 standard specifies that these macros must only be
+-   defined if explicitly requested.  */
+-#if !defined __cplusplus || defined __STDC_FORMAT_MACROS
+-
+ # if __WORDSIZE == 64
+ #  define __PRI64_PREFIX	"l"
+ #  define __PRIPTR_PREFIX	"l"
+@@ -268,9 +263,6 @@ typedef wchar_t __gwchar_t;
+ # define SCNuPTR	__PRIPTR_PREFIX "u"
+ # define SCNxPTR	__PRIPTR_PREFIX "x"
+ 
+-#endif	/* C++ && format macros */
+-
+-
+ __BEGIN_DECLS
+ 
+ #if __WORDSIZE == 64
+-- 
+2.54.0
+
